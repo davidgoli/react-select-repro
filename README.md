@@ -1,46 +1,32 @@
-# Getting Started with Create React App
+## .d.ts emission bug minimal repro
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To test:
 
-## Available Scripts
+1. Install packages: `yarn`
+2. `yarn build`
 
-In the project directory, you can run:
+Result:
 
-### `yarn start`
+```
+src/index.tsx → dist/index.js...
+[!] (plugin rpt2) Error: /Users/davidgolightly/dev/react-select-repro/src/select.tsx(3,14): semantic error TS4023: Exported variable 'SelectTheme' has or is using name 'ThemeSpacing' from external module "/Users/davidgolightly/dev/react-select-repro/node_modules/react-select/dist/declarations/src/types" but cannot be named.
+src/select.tsx
+Error: /Users/davidgolightly/dev/react-select-repro/src/select.tsx(3,14): semantic error TS4023: Exported variable 'SelectTheme' has or is using name 'ThemeSpacing' from external module "/Users/davidgolightly/dev/react-select-repro/node_modules/react-select/dist/declarations/src/types" but cannot be named.
+    at error (/Users/davidgolightly/dev/react-select-repro/node_modules/rollup/dist/shared/rollup.js:158:30)
+    at throwPluginError (/Users/davidgolightly/dev/react-select-repro/node_modules/rollup/dist/shared/rollup.js:21741:12)
+    at Object.error (/Users/davidgolightly/dev/react-select-repro/node_modules/rollup/dist/shared/rollup.js:22415:20)
+    at Object.error (/Users/davidgolightly/dev/react-select-repro/node_modules/rollup/dist/shared/rollup.js:21917:38)
+    at RollupContext.error (/Users/davidgolightly/dev/react-select-repro/node_modules/rollup-plugin-typescript2/dist/rollup-plugin-typescript2.cjs.js:17241:30)
+    at /Users/davidgolightly/dev/react-select-repro/node_modules/rollup-plugin-typescript2/dist/rollup-plugin-typescript2.cjs.js:25064:23
+    at arrayEach (/Users/davidgolightly/dev/react-select-repro/node_modules/rollup-plugin-typescript2/dist/rollup-plugin-typescript2.cjs.js:549:11)
+    at Function.forEach (/Users/davidgolightly/dev/react-select-repro/node_modules/rollup-plugin-typescript2/dist/rollup-plugin-typescript2.cjs.js:9401:14)
+    at printDiagnostics (/Users/davidgolightly/dev/react-select-repro/node_modules/rollup-plugin-typescript2/dist/rollup-plugin-typescript2.cjs.js:25037:12)
+    at /Users/davidgolightly/dev/react-select-repro/node_modules/rollup-plugin-typescript2/dist/rollup-plugin-typescript2.cjs.js:30114:21
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+error Command failed with exit code 1.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Expected:
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+No error, types are correctly generated

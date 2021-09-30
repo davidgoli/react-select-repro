@@ -1,17 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { SelectTheme } from './select'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+SelectTheme({ borderRadius: 1, colors: {
+  primary: 'black',
+  primary75: 'black',
+  primary50: 'black',
+  primary25: 'black',
+  danger: 'black',
+  dangerLight: 'black',
+  neutral0: 'black',
+  neutral5: 'black',
+  neutral10: 'black',
+  neutral20: 'black',
+  neutral30: 'black',
+  neutral40: 'black',
+  neutral50: 'black',
+  neutral60: 'black',
+  neutral70: 'black',
+  neutral80: 'black',
+  neutral90: 'black',
+}, spacing: {
+  baseUnit: 1,
+  controlHeight: 2,
+  menuGutter: 3 }})
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
